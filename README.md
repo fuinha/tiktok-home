@@ -1,56 +1,63 @@
-# :space_invader: React Native Template TypeScript
+# :space_invader: React Native Tiktok Home
 
-<p>
-  <a href="https://travis-ci.org/react-native-community/react-native-template-typescript">
-    <img alt="Build Status" src="https://img.shields.io/travis/react-native-community/react-native-template-typescript.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript#readme">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript/graphs/commit-activity">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/react-native-community/react-native-template-typescript/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
-  </a>
-</p>
+## 运行 Demo
 
-> Clean and minimalist React Native template for a quick start with TypeScript.
+1. 克隆仓库
 
-## :star: Features
-
-- Elegant usage directly within the [React Native CLI](https://github.com/react-native-community/cli)
-- Consistent with the default React Native template
-- Minimal additional dependencies
-
-## :arrow_forward: Usage
-
-### Note on the legacy CLI
-There seems to be quite some confusion about the legacy CLI. This template only works with the new CLI. Make sure you have uninstalled the legacy `react-native-cli` first (`npm uninstall -g react-native-cli`), for the below command to work. If you wish to not use `npx`, you can also install the new CLI globally (`npm i -g @react-native-community/cli` or `yarn global add @react-native-community/cli`).
-
-Further information can be found here: https://github.com/react-native-community/cli#about
-
-### `react-native@0.62.0` or higher
-
-```sh
-npx react-native init MyApp --template react-native-template-typescript
+```
+git clone git@github.com:bolan9999/tiktok-home.git
 ```
 
-### `react-native@0.61.x`
+2. 安装 JS 依赖
 
-```sh
-npx react-native init MyApp --template react-native-template-typescript@6.3.16
+```
+yarn install
 ```
 
-### `react-native@0.60.x`
+3. 配置并安装 pod
 
-```sh
-npx react-native init MyApp --template react-native-template-typescript@6.2.0
+```
+cd ios && pod install && cd ..
 ```
 
-## :computer: Contributing
+4. 运行
 
-Contributions are very welcome. Please check out the [contributing document](CONTRIBUTING.md).
+```
+//iOS
+yarn ios
+//Android
+yarn android
+```
+
+## 项目文件夹架构
+
+## App项目文件目录结构
++ Api                               Http Api请求接口
+    + index.ts                      向外导出的Api
+    + \*\*\*\*Api.ts                逻辑上一类Api的集合
+
++ Pages                             逻辑页面
+    + Home                          首页相关页面
+        + index.ts                  向外导出的此文件夹的所有页面
+        + Home.tsx                  首页
+        + Comments.tsx              评论页面
+        + HomeTab.tsx               首页顶部的Tab
+        + styles.ts                 首页的页面样式
+        + TVideo.tsx                视频页面
+        + VideoList.tsx             视频列表
+    + index.ts                      导出所有逻辑页面，App应用页面入口
+
++ Components                        通用组件
+    + index.ts                      向外导出的组件
+    + TypedComponent                公共的组件，带有ts申明，可以直接使用国际化Store，以及登录信息等
+
++ Modules                           通用的模块
+    + index.ts                      导出所有的通用模块
+    + Strings                       用于支持多语言以及国际化
+    + PublicStyles                  可服用的公共的样式
+    + Tools                         通用可复用的小公举
+
++ Types                             三方库补充申明文件
 
 ## :bookmark: License
 
