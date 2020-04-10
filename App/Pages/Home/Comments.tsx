@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-10 10:15:46
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 14:13:30
+ * @Last Modified time: 2020-04-10 14:19:22
  */
 
 import React from 'react';
@@ -29,7 +29,7 @@ export class Comments extends TypedComponent<{
           disableScrollViewPanResponder
           data={video.comments}
           renderItem={this._renderItem}
-          keyExtractor={(comment) => comment}
+          keyExtractor={(_comment, index) => index.toString()}
           ListHeaderComponent={this._renderHeader}
         />
         <View style={homeStyle.postContainer}>
