@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-08 21:36:29
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 11:57:14
+ * @Last Modified time: 2020-04-10 15:35:22
  *
  * 首页的Store
  */
@@ -17,6 +17,7 @@ const screenHeight = Dimensions.get('window').height;
 export class HomeStore {
   @observable followList: VideoInfo[] = mockVideoList1();
   @observable recommendList: VideoInfo[] = mockVideoList1();
+  @observable focusVideo: VideoInfo = this.followList[0];
   @observable selectedTab: number = 0;
 
   @action onHScroll = (e: any) => {
@@ -30,6 +31,10 @@ export class HomeStore {
     [{nativeEvent: {contentOffset: {x: this.contentOffsetX}}}],
     {useNativeDriver: true, listener: this.onHScroll},
   );
+
+  @action onFocusVideoChange = (video: VideoInfo) => {
+    this.focusVideo = video;
+  };
 
   navStyle = {
     position: 'absolute',
@@ -58,7 +63,7 @@ export class HomeStore {
       {
         translateX: this.contentOffsetX.interpolate({
           inputRange: [-1, 0, screenWidth, screenWidth + 1],
-          outputRange: [0, 0, 48, 48],
+          outputRange: [0, 0, 52, 52],
         }),
       },
     ],

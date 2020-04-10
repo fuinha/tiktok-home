@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 21:03:58
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 11:07:42
+ * @Last Modified time: 2020-04-10 15:33:14
  */
 
 import React from 'react';
@@ -13,6 +13,7 @@ import {TVideo} from './TVideo';
 export class VideoList extends React.Component<{
   videoList: VideoInfo[];
   tabFocus: boolean;
+  onFocusVideoChange: (video: VideoInfo) => any;
 }> {
   render() {
     return (
@@ -24,7 +25,10 @@ export class VideoList extends React.Component<{
         onIndexChanged={(index) => {
           this.props.videoList.forEach((video, idx) => {
             if (video.focus) video.onBlur();
-            if (index === idx) video.onFocus();
+            if (index === idx) {
+              this.props.onFocusVideoChange(video);
+              video.onFocus();
+            }
           });
         }}>
         {this.props.videoList.map((video, idx) => {
@@ -40,6 +44,9 @@ export class VideoList extends React.Component<{
     );
   }
   componentDidMount() {
-    this.props.videoList.length > 0 && this.props.videoList[0].onFocus();
+    if (this.props.videoList.length <= 0) return;
+    this.props.videoList[0].onFocus();
+    this.props.tabFocus &&
+      this.props.onFocusVideoChange(this.props.videoList[0]);
   }
 }

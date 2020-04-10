@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 21:09:02
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 13:51:24
+ * @Last Modified time: 2020-04-10 15:09:45
  */
 
 import {observable, action} from 'mobx';
@@ -49,7 +49,10 @@ export class VideoInfo {
     this.focus = true;
   };
 
-  @action onReady = () => (this.ready = true);
+  @action onReady = () => {
+    this.ready = true;
+    console.log('onReady');
+  };
 
   @action onPause = () => (this.paused = !this.paused);
 

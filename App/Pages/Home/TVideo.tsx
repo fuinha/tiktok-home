@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 21:11:31
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 14:14:40
+ * @Last Modified time: 2020-04-10 15:34:11
  */
 
 import React from 'react';
@@ -31,12 +31,13 @@ export class TVideo extends TypedComponent<{
           repeat
           controls={false}
           resizeMode="cover"
-          style={ps.container}
+          style={[ps.container]}
           onReadyForDisplay={video.onReady}
           paused={!(tabFocus && video.ready && video.focus && !video.paused)}
           source={{
             uri: this.props.video.uri,
-          }}></Video>
+          }}
+        />
         <TouchableOpacity
           style={[StyleSheet.absoluteFill, ps.center]}
           onPress={video.onPause}>
@@ -55,7 +56,7 @@ export class TVideo extends TypedComponent<{
             />
           </TouchableOpacity>
         </View>
-        {tabFocus && video.focus && <Comments video={video} />}
+        {/* {tabFocus && video.focus && <Comments video={video} />} */}
       </View>
     );
   }

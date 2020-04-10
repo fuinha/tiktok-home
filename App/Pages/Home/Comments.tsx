@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-10 10:15:46
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 14:19:22
+ * @Last Modified time: 2020-04-10 14:45:03
  */
 
 import React from 'react';
@@ -26,7 +26,6 @@ export class Comments extends TypedComponent<{
       <Animated.View style={home.commentsStyle}>
         <FlatList
           bounces={false}
-          disableScrollViewPanResponder
           data={video.comments}
           renderItem={this._renderItem}
           keyExtractor={(_comment, index) => index.toString()}

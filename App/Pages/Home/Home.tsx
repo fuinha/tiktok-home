@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-08 16:14:10
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 13:44:33
+ * @Last Modified time: 2020-04-10 15:26:39
  */
 
 import React from 'react';
@@ -13,6 +13,7 @@ import {TypedComponent} from '../../Components';
 import {homeStyle} from './styles';
 import {VideoList} from './VideoList';
 import {HomeTab} from './HomeTab';
+import {Comments} from './Comments';
 
 @hoc('home')
 export class Home extends TypedComponent<{home?: HomeStore}> {
@@ -22,6 +23,7 @@ export class Home extends TypedComponent<{home?: HomeStore}> {
     return (
       <KeyboardAvoidingView style={ps.container} behavior="padding" enabled>
         <Animated.ScrollView
+          horizontal
           pagingEnabled
           bounces={false}
           directionalLockEnabled
@@ -31,10 +33,12 @@ export class Home extends TypedComponent<{home?: HomeStore}> {
           <VideoList
             videoList={home.followList}
             tabFocus={home.selectedTab === 0}
+            onFocusVideoChange={home.onFocusVideoChange}
           />
           <VideoList
             videoList={home.recommendList}
             tabFocus={home.selectedTab === 1}
+            onFocusVideoChange={home.onFocusVideoChange}
           />
           <ScrollView
             horizontal={false}
@@ -44,6 +48,7 @@ export class Home extends TypedComponent<{home?: HomeStore}> {
           </ScrollView>
           <HomeTab />
         </Animated.ScrollView>
+        <Comments video={home.focusVideo} />
       </KeyboardAvoidingView>
     );
   }
