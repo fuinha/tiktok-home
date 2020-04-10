@@ -2,16 +2,11 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-10 10:15:46
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 13:56:29
+ * @Last Modified time: 2020-04-10 14:13:30
  */
 
 import React from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  TextInput,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import {TypedComponent} from '../../Components';
 import {hoc, ps} from '../../Modules';
 import {Animated, FlatList, View} from 'react-native';
@@ -30,6 +25,7 @@ export class Comments extends TypedComponent<{
     return (
       <Animated.View style={home.commentsStyle}>
         <FlatList
+          bounces={false}
           disableScrollViewPanResponder
           data={video.comments}
           renderItem={this._renderItem}
@@ -58,7 +54,10 @@ export class Comments extends TypedComponent<{
     return (
       <View style={homeStyle.commentHeader}>
         <View style={homeStyle.location}>
-          <Text>地点</Text>
+          <Image
+            style={homeStyle.locationIcon}
+            source={require('../../../Assets/location.png')}
+          />
           <Text style={homeStyle.locationText}>{video.location}</Text>
         </View>
         <TouchableOpacity

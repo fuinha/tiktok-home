@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 19:46:03
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 13:47:00
+ * @Last Modified time: 2020-04-10 14:15:06
  */
 
 import {StyleSheet} from 'react-native';
@@ -55,6 +55,10 @@ export const homeStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  locationIcon: {
+    width: 30,
+    height: 30,
+  },
   locationText: {
     marginLeft: 15,
     color: 'lightgray',
@@ -68,5 +72,13 @@ export const homeStyle = StyleSheet.create({
   },
   input: {
     flex: 1,
+  },
+  fabButton: {
+    width: 48,
+    height: 48,
+  },
+  playButton: {
+    width: 100,
+    height: 100,
   },
 });

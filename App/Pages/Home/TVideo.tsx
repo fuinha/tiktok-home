@@ -2,11 +2,11 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 21:11:31
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 11:13:41
+ * @Last Modified time: 2020-04-10 14:14:40
  */
 
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, Image} from 'react-native';
 import {ps, hoc} from '../../Modules';
 import {VideoInfo} from '../../Stores/VideoInfo';
 import Video from 'react-native-video';
@@ -40,11 +40,19 @@ export class TVideo extends TypedComponent<{
         <TouchableOpacity
           style={[StyleSheet.absoluteFill, ps.center]}
           onPress={video.onPause}>
-          {video.paused && <Text>=></Text>}
+          {video.paused && (
+            <Image
+              style={homeStyle.playButton}
+              source={require('../../../Assets/play.png')}
+            />
+          )}
         </TouchableOpacity>
         <View style={homeStyle.fabContainer}>
           <TouchableOpacity onPress={home.onCommentOpen}>
-            <Text style={homeStyle.tabButton}>{str.comments}</Text>
+            <Image
+              style={homeStyle.fabButton}
+              source={require('../../../Assets/message.png')}
+            />
           </TouchableOpacity>
         </View>
         {tabFocus && video.focus && <Comments video={video} />}
