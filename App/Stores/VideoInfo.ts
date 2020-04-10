@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 21:09:02
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 00:46:13
+ * @Last Modified time: 2020-04-10 13:51:24
  */
 
 import {observable, action} from 'mobx';
@@ -15,6 +15,8 @@ export class VideoInfo {
   keywords: string[];
   title: string;
   uri: string;
+  location = '昆明市';
+  @observable editingComment: string;
   @observable focus: boolean;
   @observable ready: boolean;
   @observable paused: boolean;
@@ -50,4 +52,14 @@ export class VideoInfo {
   @action onReady = () => (this.ready = true);
 
   @action onPause = () => (this.paused = !this.paused);
+
+  @action onCommentEdit = (text: string) => {
+    this.editingComment = text;
+  };
+
+  @action onPost = () => {
+    if (!this.editingComment) return;
+    this.comments.push(this.editingComment);
+    this.editingComment = '';
+  };
 }

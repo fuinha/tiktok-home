@@ -2,19 +2,21 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-08 21:36:29
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 09:56:32
+ * @Last Modified time: 2020-04-10 11:57:14
  *
  * 首页的Store
  */
 import {observable, action} from 'mobx';
 import {VideoInfo} from './VideoInfo';
 import {Animated, Dimensions} from 'react-native';
+import {mockVideoList1} from './Mock';
 
 const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export class HomeStore {
-  @observable followList: VideoInfo[];
-  @observable recommendList: VideoInfo[];
+  @observable followList: VideoInfo[] = mockVideoList1();
+  @observable recommendList: VideoInfo[] = mockVideoList1();
   @observable selectedTab: number = 0;
 
   @action onHScroll = (e: any) => {
@@ -23,7 +25,7 @@ export class HomeStore {
     );
   };
 
-  contentOffsetX = new Animated.Value(0);
+  private contentOffsetX = new Animated.Value(0);
   onScrollEvent = Animated.event(
     [{nativeEvent: {contentOffset: {x: this.contentOffsetX}}}],
     {useNativeDriver: true, listener: this.onHScroll},
@@ -56,40 +58,38 @@ export class HomeStore {
       {
         translateX: this.contentOffsetX.interpolate({
           inputRange: [-1, 0, screenWidth, screenWidth + 1],
-          outputRange: [0, 0, 50, 50],
+          outputRange: [0, 0, 48, 48],
         }),
       },
     ],
   };
 
-  constructor() {
-    this.followList = [
-      new VideoInfo(
-        0,
-        'https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200ff10000bopbhcuvld7780ioaq1g&line=0&ratio=540p&media_type=4&vr_type=0&improve_bitrate=0&is_play_url=1&is_support_h265=0&source=PackSourceEnum_PUBLISH',
-      ),
-      new VideoInfo(
-        1,
-        'https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200ff10000bopbhcuvld7780ioaq1g&line=0&ratio=540p&media_type=4&vr_type=0&improve_bitrate=0&is_play_url=1&is_support_h265=0&source=PackSourceEnum_PUBLISH',
-      ),
-      new VideoInfo(
-        2,
-        'https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200ff10000bopbhcuvld7780ioaq1g&line=0&ratio=540p&media_type=4&vr_type=0&improve_bitrate=0&is_play_url=1&is_support_h265=0&source=PackSourceEnum_PUBLISH',
-      ),
-    ];
-    this.recommendList = [
-      new VideoInfo(
-        10,
-        'https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200ff10000bopbhcuvld7780ioaq1g&line=0&ratio=540p&media_type=4&vr_type=0&improve_bitrate=0&is_play_url=1&is_support_h265=0&source=PackSourceEnum_PUBLISH',
-      ),
-      new VideoInfo(
-        11,
-        'https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200ff10000bopbhcuvld7780ioaq1g&line=0&ratio=540p&media_type=4&vr_type=0&improve_bitrate=0&is_play_url=1&is_support_h265=0&source=PackSourceEnum_PUBLISH',
-      ),
-      new VideoInfo(
-        12,
-        'https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200ff10000bopbhcuvld7780ioaq1g&line=0&ratio=540p&media_type=4&vr_type=0&improve_bitrate=0&is_play_url=1&is_support_h265=0&source=PackSourceEnum_PUBLISH',
-      ),
-    ];
-  }
+  private commentsY = new Animated.Value(screenHeight - 100);
+  commentsStyle = {
+    position: 'absolute',
+    top: 100,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 10,
+    padding: 20,
+    backgroundColor: 'white',
+    transform: [{translateY: this.commentsY}],
+  };
+
+  onCommentOpen = () => {
+    Animated.timing(this.commentsY, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  onCommentClose = () => {
+    Animated.timing(this.commentsY, {
+      duration: 300,
+      toValue: screenHeight - 100,
+      useNativeDriver: true,
+    }).start();
+  };
 }
