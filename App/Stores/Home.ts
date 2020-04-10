@@ -2,12 +2,15 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-08 21:36:29
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 00:43:13
+ * @Last Modified time: 2020-04-10 09:56:32
  *
  * 首页的Store
  */
 import {observable, action} from 'mobx';
 import {VideoInfo} from './VideoInfo';
+import {Animated, Dimensions} from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 export class HomeStore {
   @observable followList: VideoInfo[];
@@ -18,6 +21,45 @@ export class HomeStore {
     this.selectedTab = Math.floor(
       (e.nativeEvent.contentOffset.x / e.nativeEvent.contentSize.width) * 3,
     );
+  };
+
+  contentOffsetX = new Animated.Value(0);
+  onScrollEvent = Animated.event(
+    [{nativeEvent: {contentOffset: {x: this.contentOffsetX}}}],
+    {useNativeDriver: true, listener: this.onHScroll},
+  );
+
+  navStyle = {
+    position: 'absolute',
+    left: 0,
+    width: '33.33%',
+    top: 0,
+    paddingHorizontal: 15,
+    transform: [
+      {
+        translateX: this.contentOffsetX.interpolate({
+          inputRange: [-1, 0, screenWidth, screenWidth + 1],
+          outputRange: [0, 0, screenWidth, screenWidth],
+        }),
+      },
+    ],
+  };
+
+  indicatorStyle = {
+    position: 'absolute',
+    left: 0,
+    width: 36,
+    bottom: 0,
+    height: 3,
+    backgroundColor: 'white',
+    transform: [
+      {
+        translateX: this.contentOffsetX.interpolate({
+          inputRange: [-1, 0, screenWidth, screenWidth + 1],
+          outputRange: [0, 0, 50, 50],
+        }),
+      },
+    ],
   };
 
   constructor() {

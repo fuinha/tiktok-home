@@ -2,7 +2,7 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 21:03:58
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 00:43:41
+ * @Last Modified time: 2020-04-10 09:30:48
  */
 
 import React from 'react';
@@ -22,6 +22,7 @@ export class VideoList extends React.Component<{
       <Swiper
         horizontal={false}
         loop={false}
+        bounces={false}
         showsPagination={false}
         onIndexChanged={(index) => {
           this.props.videoList.forEach((video, idx) => {
