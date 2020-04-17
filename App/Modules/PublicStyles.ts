@@ -5,14 +5,14 @@
  * @Last Modified time: 2020-04-10 00:18:41
  */
 
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const ps = StyleSheet.create({
   container: {
     flex: 1,
   },
   center: {
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

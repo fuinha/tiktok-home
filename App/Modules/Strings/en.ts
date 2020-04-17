@@ -6,8 +6,8 @@
  */
 
 const home = {
-  follow: 'Follow',
-  recommend: 'Recommend',
+  follow: "Follow",
+  recommend: "Recommend",
 };
 
-export const en = {home};
+export const en = { home };

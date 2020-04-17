@@ -5,4 +5,4 @@
  * @Last Modified time: 2020-04-08 16:18:48
  */
 
-export * from './Home';
+export * from "./Home";

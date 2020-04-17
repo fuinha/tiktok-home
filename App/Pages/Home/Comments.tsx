@@ -5,22 +5,22 @@
  * @Last Modified time: 2020-04-10 14:45:03
  */
 
-import React from 'react';
-import {Text, TouchableOpacity, TextInput, Image} from 'react-native';
-import {TypedComponent} from '../../Components';
-import {hoc, ps} from '../../Modules';
-import {Animated, FlatList, View} from 'react-native';
-import {VideoInfo} from '../../Stores/VideoInfo';
-import {homeStyle} from './styles';
-import {HomeStore} from '../../Stores';
+import React from "react";
+import { Text, TouchableOpacity, TextInput, Image } from "react-native";
+import { TypedComponent } from "../../Components";
+import { hoc, ps } from "../../Modules";
+import { Animated, FlatList, View } from "react-native";
+import { VideoInfo } from "../../Stores/VideoInfo";
+import { homeStyle } from "./styles";
+import { HomeStore } from "../../Stores";
 
-@hoc('home')
+@hoc("home")
 export class Comments extends TypedComponent<{
   home?: HomeStore;
   video: VideoInfo;
 }> {
   render() {
-    const {lang, video, home} = this.props;
+    const { lang, video, home } = this.props;
     const str = lang.str.home;
     return (
       <Animated.View style={home.commentsStyle}>
@@ -48,29 +48,24 @@ export class Comments extends TypedComponent<{
   }
 
   _renderHeader = () => {
-    const {lang, video, home} = this.props;
+    const { lang, video, home } = this.props;
     const str = lang.str.home;
     return (
       <View style={homeStyle.commentHeader}>
         <View style={homeStyle.location}>
-          <Image
-            style={homeStyle.locationIcon}
-            source={require('../../../Assets/location.png')}
-          />
+          <Image style={homeStyle.locationIcon} source={require("../../../Assets/location.png")} />
           <Text style={homeStyle.locationText}>{video.location}</Text>
         </View>
-        <TouchableOpacity
-          style={homeStyle.commentClose}
-          onPress={home.onCommentClose}>
+        <TouchableOpacity style={homeStyle.commentClose} onPress={home.onCommentClose}>
           <Text>{str.close}</Text>
         </TouchableOpacity>
       </View>
     );
   };
 
-  _renderItem = ({item}: {item: string}) => {
+  _renderItem = ({ item }: { item: string }) => {
     return (
-      <View style={{marginTop: 15}}>
+      <View style={{ marginTop: 15 }}>
         <View>
           <Text style={homeStyle.author}>{this.props.video.author}</Text>
           <Text style={homeStyle.comment}>{item}</Text>

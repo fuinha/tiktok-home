@@ -5,9 +5,9 @@
  * @Last Modified time: 2020-04-08 23:03:51
  */
 
-import {sc} from './sc';
-import {tc} from './tc';
-import {en} from './en';
+import { sc } from "./sc";
+import { tc } from "./tc";
+import { en } from "./en";
 
 export const strings = {
   sc,

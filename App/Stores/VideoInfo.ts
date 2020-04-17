@@ -2,11 +2,11 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-09 21:09:02
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 15:09:45
+ * @Last Modified time: 2020-04-17 17:16:18
  */
 
-import {observable, action} from 'mobx';
-import Video from 'react-native-video';
+import { observable, action } from "mobx";
+import Video from "react-native-video";
 
 export class VideoInfo {
   ref: Video;
@@ -15,13 +15,14 @@ export class VideoInfo {
   keywords: string[];
   title: string;
   uri: string;
-  location = '昆明市';
+  location = "昆明市";
   @observable editingComment: string;
   @observable focus: boolean;
   @observable ready: boolean;
   @observable paused: boolean;
   @observable comments: string[];
   @observable thumbsUp: number;
+
   constructor(
     id: number,
     uri: string,
@@ -29,7 +30,7 @@ export class VideoInfo {
     title?: string,
     keywords?: string[],
     thumbsUp?: number,
-    comments?: string[],
+    comments?: string[]
   ) {
     this.id = id;
     this.uri = uri;
@@ -51,7 +52,6 @@ export class VideoInfo {
 
   @action onReady = () => {
     this.ready = true;
-    console.log('onReady');
   };
 
   @action onPause = () => (this.paused = !this.paused);
@@ -63,6 +63,6 @@ export class VideoInfo {
   @action onPost = () => {
     if (!this.editingComment) return;
     this.comments.push(this.editingComment);
-    this.editingComment = '';
+    this.editingComment = "";
   };
 }

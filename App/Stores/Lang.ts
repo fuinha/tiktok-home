@@ -7,8 +7,8 @@
  * 多语言切换的Store
  */
 
-import {observable, action} from 'mobx';
-import {strings, StringType} from '../Modules';
+import { observable, action } from "mobx";
+import { strings, StringType } from "../Modules";
 
 export class LangStore {
   @observable type: string; //当前选中的语言的Key
@@ -17,7 +17,7 @@ export class LangStore {
   strs = strings; //所有语言的大字典
 
   @action
-  update = (type: string = 'sc') => {
+  update = (type: string = "sc") => {
     this.type = type;
     //TODO localStorage.setItem('lang.type', type);
     this.str = strings[this.type] ? strings[this.type] : strings.sc;

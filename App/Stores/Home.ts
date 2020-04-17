@@ -2,17 +2,17 @@
  * @Author: bolan9999(shanshang130@gmail.com)
  * @Date: 2020-04-08 21:36:29
  * @Last Modified by: bolan9999(shanshang130@gmail.com)
- * @Last Modified time: 2020-04-10 15:42:13
+ * @Last Modified time: 2020-04-17 17:18:52
  *
  * 首页的Store
  */
-import {observable, action} from 'mobx';
-import {VideoInfo} from './VideoInfo';
-import {Animated, Dimensions} from 'react-native';
-import {mockVideoList1} from './Mock';
+import { observable, action } from "mobx";
+import { VideoInfo } from "./VideoInfo";
+import { Animated, Dimensions } from "react-native";
+import { mockVideoList1 } from "./Mock";
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
 
 export class HomeStore {
   @observable followList: VideoInfo[] = mockVideoList1();
@@ -22,24 +22,24 @@ export class HomeStore {
 
   @action onHScroll = (e: any) => {
     this.selectedTab = Math.floor(
-      (e.nativeEvent.contentOffset.x / e.nativeEvent.contentSize.width) * 3,
+      (e.nativeEvent.contentOffset.x / e.nativeEvent.contentSize.width) * 3
     );
   };
 
   private contentOffsetX = new Animated.Value(0);
-  onScrollEvent = Animated.event(
-    [{nativeEvent: {contentOffset: {x: this.contentOffsetX}}}],
-    {useNativeDriver: true, listener: this.onHScroll},
-  );
+  onScrollEvent = Animated.event([{ nativeEvent: { contentOffset: { x: this.contentOffsetX } } }], {
+    useNativeDriver: true,
+    listener: this.onHScroll,
+  });
 
   @action onFocusVideoChange = (video: VideoInfo) => {
     this.focusVideo = video;
   };
 
   navStyle = {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
-    width: '33.33%',
+    width: "33.33%",
     top: 0,
     paddingHorizontal: 15,
     transform: [
@@ -53,12 +53,12 @@ export class HomeStore {
   };
 
   indicatorStyle = {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     width: 36,
     bottom: 0,
     height: 3,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     transform: [
       {
         translateX: this.contentOffsetX.interpolate({
@@ -71,15 +71,15 @@ export class HomeStore {
 
   private commentsY = new Animated.Value(screenHeight - 100);
   commentsStyle = {
-    position: 'absolute',
+    position: "absolute",
     top: 100,
     left: 0,
     right: 0,
     bottom: 0,
     borderRadius: 10,
     padding: 20,
-    backgroundColor: 'white',
-    transform: [{translateY: this.commentsY}],
+    backgroundColor: "white",
+    transform: [{ translateY: this.commentsY }],
   };
 
   onCommentOpen = () => {

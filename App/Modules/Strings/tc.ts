@@ -6,8 +6,8 @@
  */
 
 const home = {
-  follow: '關注',
-  recommend: '推薦',
+  follow: "關注",
+  recommend: "推薦",
 };
 
-export const tc = {home};
+export const tc = { home };
